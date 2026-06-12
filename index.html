@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Maryland FAMLI Assistant — CWC HR (Demo)</title>
+<link rel="icon" href="https://cwchr.com/wp-content/uploads/2023/11/cropped-favicon-32x32.png" />
+<style>
+  /* CWC brand fonts (same files cwchr.com loads), with safe fallbacks */
+  @font-face { font-family:"mont"; src:url('https://cwchr.com/wp-content/uploads/2023/11/mont-heavydemo-webfont.woff2') format('woff2'); font-weight:900; font-display:swap; }
+  @font-face { font-family:"evolve"; src:url('https://cwchr.com/wp-content/uploads/2023/11/made_evolve_sans_thin_personal_use-webfont.woff2') format('woff2'); font-weight:400; font-display:swap; }
+  :root { --ink:#13131A; --navy:#112337; --gold:#FFD214; --paper:#F5F5F5; --muted:#585e6a; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"evolve","Montserrat",system-ui,sans-serif; color:var(--ink); background:var(--paper); line-height:1.65; }
+  .hero { background:var(--ink); color:#fff; padding:64px 24px 56px; text-align:center; position:relative; overflow:hidden; }
+  .hero::after { content:""; position:absolute; inset:0; background:url('https://cwchr.com/wp-content/uploads/2023/12/waves-home.svg') no-repeat right -160px top -160px / 820px; opacity:.12; pointer-events:none; }
+  .hero > * { position:relative; z-index:1; }
+  .hero img.logo { height:64px; margin:0 auto 26px; }
+  .hero h1 { font-family:"mont","Montserrat",sans-serif; font-weight:900; font-size:clamp(34px,6vw,58px); text-transform:uppercase; letter-spacing:.02em; }
+  .hero h1 .g { color:var(--gold); }
+  .hero .tag { margin-top:12px; font-size:15px; letter-spacing:.18em; text-transform:uppercase; opacity:.85; }
+  .wrap { max-width:920px; margin:0 auto; padding:48px 24px 64px; }
+  .wrap > p.intro { max-width:720px; margin:0 auto 26px; text-align:center; font-size:17px; }
+  #famli-chat { max-width:880px; margin:0 auto; }
+  .note { max-width:720px; margin:26px auto 0; text-align:center; font-size:12.5px; color:var(--muted); }
+  .foot { text-align:center; padding:0 24px 48px; font-size:12px; color:var(--muted); }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <img class="logo" src="https://cwchr.com/wp-content/uploads/2023/11/cwc-logo-temp.png" alt="CWC Human Resources" />
+    <h1>Maryland <span class="g">FAMLI Assistant</span></h1>
+    <div class="tag">Practical. Accurate. We do what's right for you.</div>
+  </div>
+
+  <div class="wrap">
+    <p class="intro">Ask anything about Maryland's Paid Family &amp; Medical Leave (FAMLI)
+    program — answers grounded in official state sources, with citations. Try real
+    questions your clients ask you.</p>
+    <div id="famli-chat"></div>
+    <p class="note">Preview demo of the Maryland FAMLI Assistant, prepared for CWC Human
+    Resources by TAG Solutions. General informational guidance only — not legal, tax,
+    or compliance advice.</p>
+  </div>
+  <div class="foot">© CWC Human Resources · Demo preview — not the production site</div>
+
+  <!-- Widget hosted on Supabase Edge Functions; backend is the live /ask endpoint. -->
+  <script src="https://pxavcxnelvuhexujlbqf.supabase.co/functions/v1/widget"
+    data-mode="inline" data-target="#famli-chat" data-height="620"
+    data-endpoint="https://pxavcxnelvuhexujlbqf.supabase.co/functions/v1/ask"></script>
+</body>
+</html>
