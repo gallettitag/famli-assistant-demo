@@ -47,7 +47,11 @@
     "contributions, eligibility, deadlines, private plans, you name it. " +
     "What can I help you figure out?";
   function isGreeting(q) {
-    return /^[\s.,!?'-]*(hi+|hey+|heya|hiya|hello+|yo+|sup|howdy|greetings|good\s*(morning|afternoon|evening|day)|(hi|hey|hello)\s*(there|bestie)|what'?s\s*up|wass?up)[\s.,!?'-]*$/i.test(q || "");
+    q = (q || "").trim();
+    if (/^(?:👋|🙋|🙌|✋|🤙)+$/u.test(q)) return true; // a bare wave emoji
+    // core greeting token, optional friendly address (there/bestie/everyone/y'all/…),
+    // only greeting-ish trailing words allowed — any real words (a question) break the match.
+    return /^[\s.,!?'-]*(hi+|hey+|heya|hiya|hello+|hullo|yo+|sup|wass?up|what'?s?\s*up|howdy|greetings|hola|henlo|heyo|ello|g'?day|gm|good\s+(morning|afternoon|evening|day)|mornin'?|morning|afternoon|evening)(\s+(there|bestie|hr\s*bestie|everyone|every\s*one|all|y'?all|folks|team|friend|friends|guys|peeps|to\s+you))?[\s.,!?'-]*$/i.test(q);
   }
 
   var ICON_CHAT = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#112337" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 9.6 9.6 0 0 1-4-1L3 20l1.5-5.5a8.38 8.38 0 0 1-1-4A8.5 8.5 0 0 1 12 2a8.38 8.38 0 0 1 9 8.5z"/></svg>';
