@@ -40,6 +40,16 @@
     "Can I use a private plan instead?",
   ];
 
+  // Greeting / small-talk: answered locally with a warm intro instead of hitting
+  // the backend (a bare "hello" matches no FAMLI source → would otherwise refuse).
+  var GREETING_REPLY = "Hey HR bestie! 👋 I'm your Maryland FAMLI assistant. " +
+    "Ask me anything about how Paid Family & Medical Leave works for employers — " +
+    "contributions, eligibility, deadlines, private plans, you name it. " +
+    "What can I help you figure out?";
+  function isGreeting(q) {
+    return /^[\s.,!?'-]*(hi+|hey+|heya|hiya|hello+|yo+|sup|howdy|greetings|good\s*(morning|afternoon|evening|day)|(hi|hey|hello)\s*(there|bestie)|what'?s\s*up|wass?up)[\s.,!?'-]*$/i.test(q || "");
+  }
+
   var ICON_CHAT = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#112337" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 9.6 9.6 0 0 1-4-1L3 20l1.5-5.5a8.38 8.38 0 0 1-1-4A8.5 8.5 0 0 1 12 2a8.38 8.38 0 0 1 9 8.5z"/></svg>';
   var ICON_SEND = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#13131A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>';
   var ICON_CLOSE = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>';
@@ -290,6 +300,7 @@
 
   function ask(question) {
     addUser(question);
+    if (isGreeting(question)) { addBot(GREETING_REPLY); return; }
     var thinking = el("div", "famli-msg famli-bot");
     thinking.innerHTML = '<div class="famli-typing"><span></span><span></span><span></span></div>';
     msgs.appendChild(thinking); msgs.scrollTop = msgs.scrollHeight;
